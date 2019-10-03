@@ -16,7 +16,7 @@ To Do:
   
   e. comments
 
-2. Write unit tests for functions
+3. Write unit tests for functions
 
   a. make sure functions work and don't have bugs
 
