@@ -1,3 +1,5 @@
+Design document https://github.com/averywald/ajw3p8/blob/master/assignment-two/requirements.md
+
 To Do:
 
 1. Create classes for this system
