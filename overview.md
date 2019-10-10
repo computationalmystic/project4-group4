@@ -1,5 +1,7 @@
 # To Do list:
 
+Design Document link: https://github.com/averywald/ajw3p8/blob/master/assignment-two/requirements.md
+
 ## Common themes:
 
 ### Classes - brainstorm what the base class needs then what the subclasses need
