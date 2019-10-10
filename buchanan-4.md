@@ -1,3 +1,5 @@
+Design document https://github.com/kylemalisos/kmvk6/blob/master/assignment-four/Software%20Engineering%20group%20project%201.pdf
+
 To Do:
 
 1. Create classes for this system
