@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    display: inherit;
+    align-content: center;
+    position: sticky;
+    top: 0;
+    padding: 2vw;
+    background-color: rgba(146, 180, 230, 0.652);
+}
+
+#title {
+    margin: 0 0 0 2vw;
+    color: white;
+    font-size: 2em;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#title:hover {
+    color: black;
+    transition: .3s ease-in-out;
+}
+
+.dataPoint {
+    height: 20vh;
+    background-color: rgb(82, 82, 255);
+}

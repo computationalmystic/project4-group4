@@ -10,18 +10,22 @@ $(document).ready(() => {
         url: 'http://augur.osshealth.io:5000/api/unstable/repo-groups',
         method: 'GET',
     }).done((data) => {
+
         // iterate through the objects in JSON response
-        let dataPoints = [];
         $.each(data, (key, value) => {
+
+            // log the data for dev purposes
             console.log(key, value['rg_name']);
-            // add data as a list item element into array
-            dataPoints.push(`<li id="${key}">${value['rg_name']}</li>`);
+
+            // add data point group to DOM
+            $('body').append(
+                `<div id="${key}" class="dataPoint">
+                    <h3>${value['rg_name']}</h3>
+                </div>`
+            );
+
         });
-        // add to DOM in a list element
-        $('<ul>', {
-            'class': 'getResponse',
-            html: dataPoints.join('')
-        }).appendTo('body');
+
     });
 
 });
