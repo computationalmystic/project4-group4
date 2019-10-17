@@ -7,7 +7,8 @@ let root = 'http://augur.osshealth.io:5000/api/unstable/repo-groups/';
 let endpoints = [
     { criteria: 'repo_group_id', extension: '/repos/' },
     { criteria: 'repo_id', extension: '/code-changes/' },
-    { criteria: 'repo_id', extension: '/top-committers/' }
+    { criteria: 'repo_id', extension: '/top-committers/' },
+    { criteria: '', extension: '' }
 ];
 
 // send AJAX GET request
@@ -41,28 +42,22 @@ function request(url, index) {
 // once page is loaded
 $(document).ready(() => {
 
+    const i = 1;
+
         // API root GET request
         $.when(request(root, endpoints[0])).done((response) => {
-
-            // ready to request repos
             console.log(response);
 
-            // request code changes and repos
-                // double when
-            $.when(request(response.data[0].url, endpoints[1])).done((response) => {
-
+            $.when(request(response.data[i].url, endpoints[1])).done((response) => {
+                console.log(response);
+            });
+            $.when(request(response.data[i].url, endpoints[2])).done((response) => {
                 console.log(response);
 
-                $.when(request(response.data[0].url, endpoints[2])).done((response) => {
-
+                $.when(request(response.data[i].url, endpoints[3])).done((response) => {
                     console.log(response);
-
-
-
                 });
-
             });
-            
         });
 
 });
