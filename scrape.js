@@ -12,32 +12,30 @@ $(document).ready(() => {
     }).done((data) => {
         
         // iterate through the objects in JSON response
-        $.each(data, (key, value) => {
-
-            // log the data for dev purposes
-            console.log(key, value['rg_name'], value['repo_group_id']);
-            
+        $.each(data, (key, first) => {
             $.ajax({
                 dataType: 'json',
-                url: 'http://augur.osshealth.io:5000/api/unstable/repo-groups/' + value['repo_group_id'] + '/code-changes' ,
+                url: 'http://augur.osshealth.io:5000/api/unstable/repo-groups/'+first['repo_group_id']+'/code-changes',
                 method: 'GET',
             }).done((data) => {
+        
+                // iterate through the objects in JSON response
+                $.each(data, (key, second) => {
+                    $.ajax({
+                        dataType: 'json',
+                        url: 'http://augur.osshealth.io:5000/api/unstable/repo-groups/'+first['repo_group_id']+'/repos/'+second['repo_id']+'/committers',
+                        method: 'GET',
+                    }).done((data) => {
                 
-                 $.each(data, (key, value) => {
-                    // log the data for dev purposes
-                     console.log()
-                    console.log('Repo ID: ' + key, value['repo_id']);
+                        // iterate through the objects in JSON response
+                        $.each(data, (key, third) => {
+                            console.log('Commit: ' + third['count'])
+                        });
+                
+                    });
+                    
                 });
             });
-            
-            
-            // add data point group to DOM
-            $('body').append(
-                `<div id="${key}" class="dataPoint">
-                    <h3>${value['rg_name']}</h3>
-                </div>`
-            );
-
         });
 
     });
