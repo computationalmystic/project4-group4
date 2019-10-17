@@ -39,23 +39,36 @@ function request(url, index) {
     return obj;
 }
 
+function domify(data) {
+
+    data.foreach(e => {
+        $(body).append(
+            
+        );
+    });
+}
+
 // once page is loaded
 $(document).ready(() => {
 
-    const i = 1;
+    const i = 0;
 
         // API root GET request
         $.when(request(root, endpoints[0])).done((response) => {
-            console.log(response);
+            console.log(response.data);
 
             $.when(request(response.data[i].url, endpoints[1])).done((response) => {
-                console.log(response);
-            });
-            $.when(request(response.data[i].url, endpoints[2])).done((response) => {
-                console.log(response);
+                console.log(response.data);
 
                 $.when(request(response.data[i].url, endpoints[3])).done((response) => {
-                    console.log(response);
+                    console.log(response.data);
+                });
+            });
+            $.when(request(response.data[i].url, endpoints[2])).done((response) => {
+                console.log(response.data);
+
+                $.when(request(response.data[i].url, endpoints[3])).done((response) => {
+                    console.log(response.data);
                 });
             });
         });
