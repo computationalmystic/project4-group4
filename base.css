@@ -3,6 +3,7 @@ body {
     flex-direction: column;
     margin: 0;
     padding: 0;
+    background-color: rgb(47, 50, 92);
 }
 
 #header {

@@ -39,11 +39,29 @@ function request(url, index) {
     return obj;
 }
 
-// function domify(data) {
-//     for (let item in data) {
-//         $('body').append(`<h3>${item}</h3>`);
-//     }
-// }
+function pie(data, total) {
+    let arr = data;
+    let contributors = [];
+    // parse data
+    arr.forEach(e => {
+        // get commit percentages per contributor
+        contributors.push((e['commits'] / total) * 100);
+    });
+    console.log(contributors);
+    // add chart div to DOM
+    $('body').append('<div class="ct-chart ct-perfect-fourth"></div>');
+    // init chart with data
+    new Chartist.Pie('.ct-chart', {
+        series: contributors
+    }, {
+        donut: true,
+        donutWidth: 60,
+        donutSolid: true,
+        startAngle: 270,
+        total: 100,
+        showLabel: true
+    });
+}
 
 // once page is loaded
 $(document).ready(() => {
@@ -58,6 +76,8 @@ $(document).ready(() => {
 
             $.when(request(response.data[i].url, endpoints[1])).done((response) => {
                 // console.log(response.data);
+
+                i = 3;
 
                 $.when(request(response.data[i].url, endpoints[3])).done((response) => {
                     console.log('code changes: ', response.data);           
@@ -77,18 +97,8 @@ $(document).ready(() => {
                 $.when(request(response.data[i].url, endpoints[3])).done((response) => {
                     // console.log(response.data);
 
-                    // get the top committers and their percentage of total commits
-                    let arr = response.data;
-                    arr.forEach(e => {
-                        let str = 
-                            'commit pctg: ' +
-                            e['email'] + ' ' +
-                            'commits: ' +
-                            e['commits'] + ' ' +
-                            (e['commits'] / commits);
-                        $('body').append(`<h3>${str}</h3>`);
-                    });
-                    // domify(response.data);
+                    // pie chart of top committers' contributions
+                    pie(response.data, commits);
                 });
             });
         });
