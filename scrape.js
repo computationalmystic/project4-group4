@@ -8,6 +8,7 @@ let endpoints = [
     { criteria: 'repo_group_id', extension: '/repos/' },
     { criteria: 'repo_id', extension: '/code-changes/' },
     { criteria: 'repo_id', extension: '/top-committers/' },
+    { criteria: 'repo_id', extension: '/pull-request-acceptance-rate/' },
     { criteria: '', extension: '' }
 ];
 
@@ -39,6 +40,13 @@ function request(url, index) {
     return obj;
 }
 
+// inject pie chart into the DOM
+// accepts:
+    // data to graph
+        // array
+    // total commits ????? tentative
+// returns:
+    // void
 function pie(data, total) {
     let arr = data;
     let contributors = [];
@@ -47,7 +55,6 @@ function pie(data, total) {
         // get commit percentages per contributor
         contributors.push((e['commits'] / total) * 100);
     });
-    console.log(contributors);
     // add chart div to DOM
     $('body').append('<div class="ct-chart ct-perfect-fourth"></div>');
     // init chart with data
@@ -72,14 +79,13 @@ $(document).ready(() => {
         // API root GET request
         $.when(request(root, endpoints[0])).done((response) => {
             // console.log(response.data);
-            // domify(response.data);
 
             $.when(request(response.data[i].url, endpoints[1])).done((response) => {
                 // console.log(response.data);
 
                 i = 3;
 
-                $.when(request(response.data[i].url, endpoints[3])).done((response) => {
+                $.when(request(response.data[i].url, endpoints[4])).done((response) => {
                     console.log('code changes: ', response.data);           
                     
                     // get total commits per repo
@@ -94,7 +100,7 @@ $(document).ready(() => {
             $.when(request(response.data[i].url, endpoints[2])).done((response) => {
                 // console.log(response.data);            
 
-                $.when(request(response.data[i].url, endpoints[3])).done((response) => {
+                $.when(request(response.data[i].url, endpoints[4])).done((response) => {
                     // console.log(response.data);
 
                     // pie chart of top committers' contributions

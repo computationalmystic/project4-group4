@@ -6,13 +6,18 @@ body {
     background-color: rgb(47, 50, 92);
 }
 
+button {
+    width: 7vw;
+    height: 3vh;
+}
+
 #header {
     display: inherit;
     align-content: center;
     position: sticky;
     top: 0;
     padding: 2vw;
-    background-color: rgba(146, 180, 230, 0.652);
+    background-color: rgb(47, 50, 92);
 }
 
 #title {
