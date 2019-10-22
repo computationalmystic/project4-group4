@@ -38,7 +38,58 @@ $(document).ready(() => {
             });
         });
 
+// inject pie chart into the DOM
+// accepts:
+    // data to graph
+        // array
+    // total commits ????? tentative
+// returns:
+    // void
+function pie(input, total) {
+    
+    //var total = 0;
+    var data = {
+        labels: [],
+        series: []
+    };
+
+    // parse data
+    input.forEach(e => {
+        data.series.push((e['commits'] / total) * 100);
+        data.labels.push(e['email']);
     });
+
+    var options = {
+        labelInterpolationFnc: function(value) {
+            return value[0]
+        } 
+    }
+
+    var responsiveOptions = [
+        ['screen and (min-width: 640px)', {
+        chartPadding: 30,
+        labelOffset: 100,
+        labelDirection: 'explode',
+        labelInterpolationFnc: function(value, idx) {
+            console.log(total);
+            console.log('value: '+ value + ' idx: '+idx + ' series[idx]: ' + data.series[idx]);
+
+            //var percentage = Math.round(data.series[idx] / total * 100) + '%';
+            return data.labels[idx] + ' ' + data.series[idx] + '%';
+        }
+        }],
+        ['screen and (min-width: 1024px)', {
+        labelOffset: 80,
+        chartPadding: 20
+        }]
+    ];
+
+    // add chart div to DOM
+    $('body').append('<div class="ct-chart ct-perfect-fourth"></div>');
+    // init chart with data
+    new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
+
+}
 
     function setupChart(dataIn){
         if (typeof dataIn !== 'undefined'){
@@ -81,39 +132,11 @@ $(document).ready(() => {
             x.domain(data.map(function(d) { return d.email; }));
             y.domain([0, d3.max(data, function(d) { return d.commits })]);
 
-            // add axis
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis)
-                .selectAll("text")
-                .style("text-anchor", "end")
-                .attr("dx", "-.8em")
-                .attr("dy", "-.55em")
-                .attr("transform", "rotate(-90)" );
-
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis)
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 5)
-                .attr("dy", ".71em")
-                .style("text-anchor", "end")
-                .text("Frequency");
-
-
-            // Add bar chart
-            svg.selectAll("bar")
-                .data(data)
-                .enter().append("rect")
-                .attr("class", "bar")
-                .attr("x", function(d) { return x(d.email); })
-                .attr("width", x.rangeBand())
-                .attr("y", function(d) { return y(d.commits); })
-                .attr("height", function(d) { return height - y(d.commits)});
-                
-
+                $.when(request(response.data[i].url, endpoints[4])).done((response) => {
+                     console.log(response.data);
+                    // pie chart of top committers' contributions
+                    pie(response.data, commits);
+                });
             });
         }
     }
