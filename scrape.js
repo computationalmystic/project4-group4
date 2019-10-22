@@ -47,27 +47,48 @@ function request(url, index) {
     // total commits ????? tentative
 // returns:
     // void
-function pie(data, total) {
-    let arr = data;
-    let contributors = [];
-    // parse data
-    arr.forEach(e => {
+
+function pie(input, total) {
+
+    var data = {
+        labels: [],
+        series: []
+      };
+
+      // parse data
+    input.forEach(e => {
         // get commit percentages per contributor
-        contributors.push((e['commits'] / total) * 100);
+        data.series.push(e['commits']);
+        data.labels.push(e['email']);
     });
+      
+      var options = {
+        labelInterpolationFnc: function(value) {
+          return value[0]
+        }
+      };
+
+      var responsiveOptions = [
+        ['screen and (min-width: 640px)', {
+          chartPadding: 30,
+          labelOffset: 100,
+          labelDirection: 'explode',
+          labelInterpolationFnc: function(value, idx) {
+            return value + ': ' + data.series[idx] + ' commits';
+          }
+        }],
+        ['screen and (min-width: 1024px)', {
+          labelOffset: 80,
+          chartPadding: 20
+        }]
+      ];
+    
+    
     // add chart div to DOM
     $('body').append('<div class="ct-chart ct-perfect-fourth"></div>');
     // init chart with data
-    new Chartist.Pie('.ct-chart', {
-        series: contributors
-    }, {
-        donut: true,
-        donutWidth: 60,
-        donutSolid: true,
-        startAngle: 270,
-        total: 100,
-        showLabel: true
-    });
+    new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
+
 }
 
 // once page is loaded
@@ -101,7 +122,7 @@ $(document).ready(() => {
                 // console.log(response.data);            
 
                 $.when(request(response.data[i].url, endpoints[4])).done((response) => {
-                    // console.log(response.data);
+                     console.log(response.data);
 
                     // pie chart of top committers' contributions
                     pie(response.data, commits);
