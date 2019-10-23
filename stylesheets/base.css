@@ -28,12 +28,22 @@ button {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#title:hover {
-    color: black;
-    transition: .3s ease-in-out;
+body > #content {
+    display: inherit;
+    flex-direction: row;
 }
 
-.dataPoint {
-    height: 20vh;
-    background-color: rgb(82, 82, 255);
+.panel {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+
+#dynamic {
+    width: 75vw;
+}
+
+#rg {
+    width: 25vw;
+    justify-content: center;
 }

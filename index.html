@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <!-- css link -->
-    <link rel="stylesheet" href="base.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylesheets/base.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
     <!-- jquery CDN -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
@@ -21,7 +21,15 @@
             group 4
         </a>
     </div>
+    <div id="content">
+        <div class="panel" id="dynamic"></div>
+        <div class="panel" id="rg">
+            <h2>Repo Groups</h2>
+        </div>
+    </div>
 </body>
 <!-- javascript link -->
-<script src="scrape.js"></script>
+<script src="scripts/graph.js"></script>
+<script src="scripts/repos.js"></script>
+<script src="scripts/scrape.js"></script>
 </html>
