@@ -45,13 +45,20 @@ $(document).ready(() => {
 
     // when repo clicked
     $(document).on('click', '.r-button', event => {
+        // id of the button clicked
         let target = `#${event.currentTarget.id}`;
+        // toggle active class
         $(target).toggleClass('active').promise().done(() => {
             if ($(target).hasClass('active')) {
-                // open stat panel
+                // open stat panel for repo clicked
                 $(`${target}-panel`).slideDown({ easing: 'swing' });
+                
+                let repoGroup = event.currentTarget.className.split(' ')[1];
                 // generate stats ??
+                repoData(`${root}${repoGroup}/repos/`, target);
                     // set state as generated to prevent further ajax calls
+
+
             } else {
                 // close stat panel
                 $(`${target}-panel`).slideUp({ easing: 'swing' });
