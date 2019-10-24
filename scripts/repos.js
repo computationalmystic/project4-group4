@@ -21,12 +21,3 @@ function getRepos(url, id) {
         });
     });
 }
-
-function repoData(url, id) {
-    $.ajax({
-        url: `${url}${id}`,
-        dataType: 'json'
-    }).done(data => {
-        console.log(data);
-    });
-}

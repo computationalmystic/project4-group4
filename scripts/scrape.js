@@ -47,6 +47,7 @@ $(document).ready(() => {
     $(document).on('click', '.r-button', event => {
         // id of the button clicked
         let target = `#${event.currentTarget.id}`;
+        console.log('repo id: ', target);
         // toggle active class
         $(target).toggleClass('active').promise().done(() => {
             if ($(target).hasClass('active')) {
@@ -55,7 +56,9 @@ $(document).ready(() => {
                 
                 let repoGroup = event.currentTarget.className.split(' ')[1];
                 // generate stats ??
-                repoData(`${root}${repoGroup}/repos/`, target);
+                topCommitters(`${root}${repoGroup}/repos/`, target.substr(1));
+                codeChanges(`${root}${repoGroup}/repos/`, target.substr(1));
+                commitRate(`${root}${repoGroup}/repos/`, target.substr(1));
                     // set state as generated to prevent further ajax calls
 
 
