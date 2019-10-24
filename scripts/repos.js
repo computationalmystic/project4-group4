@@ -6,12 +6,7 @@ function getRepos(url, id) {
     }).done(data => {
         console.log(data);
         data.forEach(e => {
-            $('#dynamic').append(repoDOM(e.repo_name, e.repo_id));
+            $('#dynamic').append(partial(e.repo_name, e.repo_id, 'r-button', true));
         });
     });
-}
-
-// formatted HTML partial for DOM insertion
-function repoDOM(content, id) {
-    return `<button id="${id}" class="r-button">${content}</button>`;
 }
