@@ -1,6 +1,7 @@
 
 // scrape.js
-// avery wald
+    // driver script
+    // handles event listeners and callback delegation
 
 // API stuff
 const root = 'http://augur.osshealth.io:5000/api/unstable/repo-groups/';
@@ -45,23 +46,31 @@ $(document).ready(() => {
 
     // when repo clicked
     $(document).on('click', '.r-button', event => {
-        // id of the button clicked
+
+        // get repo group ID
+        let repoGroup = event.currentTarget.className.split(' ')[1];
+        
+        // format repo button ID for jquery
         let target = `#${event.currentTarget.id}`;
-        console.log('repo id: ', target);
+
         // toggle active class
         $(target).toggleClass('active').promise().done(() => {
+            // check if the corresponding stat panel should be open
             if ($(target).hasClass('active')) {
                 // open stat panel for repo clicked
-                $(`${target}-panel`).slideDown({ easing: 'swing' });
+                let panelID = `${target}-panel`;
+                $(panelID).slideDown({ easing: 'swing' });      
                 
-                let repoGroup = event.currentTarget.className.split(' ')[1];
-                // generate stats ??
-                topCommitters(`${root}${repoGroup}/repos/`, target.substr(1));
-                codeChanges(`${root}${repoGroup}/repos/`, target.substr(1));
-                commitRate(`${root}${repoGroup}/repos/`, target.substr(1));
-                    // set state as generated to prevent further ajax calls
+                // check if data has been fetched yet
+                if (!$(panelID).hasClass('generated')) {
+                    // generate stats
+                    topCommitters(`${root}${repoGroup}/repos/`, target);
+                    // codeChanges(`${root}${repoGroup}/repos/`, target);
+                    // rate(`${root}${repoGroup}/repos/`, target);
 
-
+                    // prevent further AJAX calls
+                    $(panelID).addClass('generated');
+                }
             } else {
                 // close stat panel
                 $(`${target}-panel`).slideUp({ easing: 'swing' });

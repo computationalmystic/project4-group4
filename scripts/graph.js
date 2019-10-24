@@ -5,8 +5,7 @@
     // total commits ????? tentative
 // returns:
     // void
-
-function pie(input, total) {
+function pie(target, input) {
 
     var data = {
         labels: [],
@@ -43,7 +42,7 @@ function pie(input, total) {
 
 
     // add chart div to DOM
-    $('body').append('<div class="ct-chart ct-perfect-fourth"></div>');
+    $(target).append('<div class="ct-chart ct-perfect-fourth"></div>');
     // init chart with data
     new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
 

@@ -8,12 +8,11 @@ function getRepos(url, id) {
         url: `${url}${id}/repos/`,
         dataType: 'json'
     }).done(data => {
-        console.log(data);
         data.forEach(e => {
             $('#dynamic').append(
                 partial(
                     e.repo_name, 
-                    e.repo_id, 
+                    `${e.repo_id}-${e.commits_all_time}`, 
                     `r-button ${id}`,
                     true
                 )
