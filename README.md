@@ -1,6 +1,7 @@
 To view the webpage:
 -
 -Use the software "Brackets" to locally show the webpage.
+
 -Click on the lighting bolt on the index.html page (it will be on the right). Make sure all the files are structured correctly. 
 -When clicking on a repo, give it a second to make the API call. 
 
