@@ -17,6 +17,8 @@ function rate(url, id) {
         url: `${url}${repoID}/pull-request-acceptance-rate/`,
         dataType: 'json'
     }).done(data => {
+        console.log('here');
         console.log(data);
+        pieRate(id, data);
     });
 }
