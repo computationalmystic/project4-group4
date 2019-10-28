@@ -1,3 +1,5 @@
+# All of our code for this assignment is found in the 'avery' branch
+
 To view the webpage:
 -
 -Use the software "Brackets" to locally show the webpage.
