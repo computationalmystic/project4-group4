@@ -65,8 +65,8 @@ $(document).ready(() => {
                 if (!$(panelID).hasClass('generated')) {
                     // generate stats
                     topCommitters(`${root}${repoGroup}/repos/`, target);
-                    // codeChanges(`${root}${repoGroup}/repos/`, target);
-                    // rate(`${root}${repoGroup}/repos/`, target);
+                    codeChanges(`${root}${repoGroup}/repos/`, target);
+                    rate(`${root}${repoGroup}/repos/`, target);
 
                     // prevent further AJAX calls
                     $(panelID).addClass('generated');

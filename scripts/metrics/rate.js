@@ -6,8 +6,15 @@
 // returns:
     // void
 function rate(url, id) {
+    console.log(id);
+
+    // parse repo DOM ID
+    let idArray = id.split('-');
+    // get repo ID
+    let repoID = idArray[0].substring(1);
+
     $.ajax({
-        url: `${url}${id}/pull-request-acceptance-rate/`,
+        url: `${url}${repoID}/pull-request-acceptance-rate/`,
         dataType: 'json'
     }).done(data => {
         console.log(data);
