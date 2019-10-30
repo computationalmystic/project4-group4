@@ -1,0 +1,98 @@
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background-color: #a5a5a5;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body #header {
+  display: inherit;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 2vw;
+  background-color: #8c8c8c;
+}
+
+body #header #title {
+  margin: 0 0 0 2vw;
+  font-size: 1.5em;
+  text-decoration: none;
+  color: inherit;
+}
+
+body #content {
+  display: inherit;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: #a5a5a5;
+}
+
+body #content .panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body #content #dynamic {
+  width: 80vw;
+}
+
+body #content #dynamic button {
+  height: 10vh;
+  padding: 0;
+  font-size: 2em;
+  background-color: transparent;
+  border: none;
+}
+
+body #content #dynamic button:hover {
+  background-color: #8c8c8c;
+}
+
+body #content #dynamic .stat-panel {
+  height: 20vh;
+  background-color: #bfbfbf;
+  display: none;
+}
+
+body #content #rg {
+  width: 20vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  top: 10vh;
+  right: 0;
+  position: fixed;
+}
+
+body #content #rg button {
+  width: inherit;
+  height: 6vh;
+  background: transparent;
+  border: none;
+  color: inherit;
+}
+
+body #content #rg button:hover {
+  background-color: #8c8c8c;
+}
+/*# sourceMappingURL=style.css.map */

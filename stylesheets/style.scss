@@ -1,0 +1,85 @@
+$bg: rgb(165, 165, 165);
+$lbg: lighten($bg, 10%);
+$dbg: darken($bg, 10%);
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-color: $bg;
+
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    #header {
+        display: inherit;
+        align-content: center;
+        position: sticky;
+        top: 0;
+        padding: 2vw;
+        background-color: $dbg;
+
+        #title {
+            margin: 0 0 0 2vw;
+            font-size: 1.5em;
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    #content {
+        display: inherit;
+        flex-direction: row;
+        background-color: $bg;
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #dynamic {
+            width: 80vw;
+
+            button {
+                height: 10vh;
+                padding: 0;
+                font-size: 2em;
+                background-color: transparent;
+                border: none;
+
+                &:hover {
+                    background-color: $dbg;
+                }
+            }
+
+            .stat-panel {
+                height: 20vh;
+                background-color: $lbg;
+                display: none;
+            }
+        }
+
+        #rg {
+            width: 20vw;
+            justify-content: center;
+            align-content: center;
+            top: 10vh;
+            right: 0;
+            position: fixed;
+
+            button {
+                width: inherit;
+                height: 6vh;
+                background: transparent;
+                border: none;
+
+                color: inherit;
+
+                &:hover {
+                    background-color: $dbg;
+                }
+            }
+        }
+    }
+}
