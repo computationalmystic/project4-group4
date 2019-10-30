@@ -1,5 +1,6 @@
 # project4-group4
 
+
 To view the webpage:
 -
 -Use the software "Brackets" to locally show the webpage.
@@ -17,3 +18,4 @@ Assesment of team memeber skills:
 -It was good that our group members had experience with web development and JavaScript, as this assignment would be impossible to complete without. 
 
 -However, none of us have extensive experience with web design so there are some bugs in the webpage, especially with the UI. With more time and more experience with web development, these bugs could be ironed out. 
+
